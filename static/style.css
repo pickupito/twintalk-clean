@@ -1,0 +1,224 @@
+/* ============================================================ 
+   static/style.css ─ LINE-風チャット UI  (2025-05 改訂 完全版)
+   ・原文 / 要約 ラベルは濃グレー
+   ・訳文行は薄い黄色 (#fff9c4) 背景
+   ・吹き出し間隔をタイトに
+   ・スピーカー再生中は黄色 (#fbc02d) に変化し二重再生防止
+   ============================================================ */
+
+/* ---------- リセット ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background: #f0f0f0;
+  color: #222;
+  overflow: hidden; /* 中央だけスクロール */
+}
+
+/* ---------- ヘッダー ---------- */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 48px; z-index: 10;
+  background: #03a9f4; color: #fff;
+  display: flex; align-items: center;
+  padding: 0 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,.2);
+}
+header h1 {
+  font-size: 1.1rem;
+  flex: 1 1 auto;
+  font-weight: 600;
+}
+
+.settings {
+  display: flex;
+  gap: 8px;
+}
+.settings button {
+  background: rgba(255,255,255,.1);
+  border: none;
+  color: #fff;
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.settings button:hover {
+  background: rgba(255,255,255,.3);
+}
+
+/* 原文モード時の色替え */
+body.original-mode header {
+  background: #6a1b9a;
+}
+body.original-mode #app-title::after {
+  content: "（原文モード）";
+  margin-left: .4em;
+  font-size: .9rem;
+}
+
+/* ---------- メイン ---------- */
+main {
+  position: fixed;
+  top: 48px; bottom: 0; left: 0; right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* チャットウィンドウ */
+.chat-window {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: .5rem;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-behavior: smooth;
+}
+
+/* ---------- 吹き出し ---------- */
+.bubble {
+  margin: .25rem 0;
+  padding: .45rem .8rem;
+  border-radius: 10px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-width: 90%;
+  font-size: .94rem;
+}
+.bubble.user {
+  background: #dcf8c6;
+  margin-left: auto;
+}
+.bubble.ai {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  margin-right: auto;
+  color: #333;
+}
+
+/* PC 幅ではやや広げる */
+@media (min-width: 801px) {
+  .bubble {
+    max-width: 80%;
+  }
+}
+
+/* 訳文行 */
+.translation {
+  background: #fff9c4;
+  padding: 3px 32px 3px 6px;
+  margin-top: 2px;
+  border-radius: 6px;
+  position: relative;
+  font-weight: 500;
+}
+
+/* ---------- スピーカー ---------- */
+.speaker {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: #03a9f4;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.speaker:hover {
+  background: #0288d1;
+}
+.speaker.playing {
+  background: #fbc02d; /* 再生中 */
+}
+
+/* ---------- 入力バー ---------- */
+.input-bar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-top: 1px solid #ccc;
+  background: #fff;
+}
+#target-lang {
+  padding: 4px 6px;
+  font-size: .9rem;
+}
+#text-input {
+  flex: 1 1 auto;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 6px 12px;
+  font-size: 1rem;
+  outline: none;
+}
+#text-input:focus {
+  border-color: #03a9f4;
+}
+
+.input-bar button,
+.file-label span {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input-bar button:hover,
+.file-label span:hover {
+  color: #03a9f4;
+}
+.file-label input {
+  display: none;
+}
+
+/* ---------- PC のみ表示: 削除 or コメントアウト ----------
+   ★ 変更点: スマホでも表示するため削除 */
+// .pc-only { display: none; }
+// @media (min-width: 801px) {
+//   .pc-only {
+//     display: flex;
+//   }
+// }
+
+/* 録音インジケータ */
+#mic-btn.mic-recording span {
+  animation: blink 1s linear infinite;
+}
+@keyframes blink {
+  0%,50% { opacity: 1; }
+  51%,100% { opacity: .3; }
+}
+
+/* ---------- モバイル幅調整 ---------- */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1rem;
+  }
+  #target-lang {
+    width: 85px;
+  }
+  .speaker {
+    width: 22px;
+    height: 22px;
+    font-size: 14px;
+  }
+}

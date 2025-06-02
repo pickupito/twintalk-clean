@@ -1,0 +1,5 @@
+openai.env
+cloudflared.exe
+*.exe
+venv/
+__pycache__/

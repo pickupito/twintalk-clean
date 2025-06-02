@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>マルチ言語 要約 &amp; 翻訳チャット</title>
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+        rel="stylesheet">
+
+  <!-- メイン CSS -->
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <!-- ===== ヘッダー（固定） ===== -->
+  <header>
+    <h1 id="app-title">マルチ言語 要約 &amp; 翻訳チャット</h1>
+
+    <!-- 設定バー（右寄せ） -->
+    <div class="settings">
+      <!-- ① チャットクリア -->
+      <button id="clear-btn" title="チャットをクリア">
+        <span class="material-icons-outlined">refresh</span>
+      </button>
+      <!-- ② モード切替 -->
+      <button id="mode-toggle" title="原文 / 要約 切替">
+        <span class="material-icons-outlined">description</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== メイン ===== -->
+  <main>
+    <!-- チャット表示エリア -->
+    <div id="chat-window" class="chat-window"></div>
+
+    <!-- 入力バー（固定） -->
+    <div class="input-bar">
+      <!-- 翻訳先言語 -->
+      <select id="target-lang">
+        <option value="">--翻訳先（任意）--</option>
+        <option value="en">English</option>
+        <option value="ko">한국어</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="zh">中文</option>
+        <option value="ja">日本語</option>
+        <option value="vi">Tiếng Việt (ベトナム語)</option>
+        <option value="ne">नेपाली (ネパール語)</option>
+        <option value="my">မြန်မာစာ (ミャンマー語)</option>
+        <option value="fil">Filipino / Tagalog (フィリピン)</option>
+        <option value="pt">Português (ブラジル)</option>
+      </select>
+
+      <!-- テキスト入力 -->
+      <input id="text-input" type="text"
+             placeholder="メッセージを入力" autocomplete="off">
+
+      <!-- 送信 -->
+      <button id="send-btn" title="送信">
+        <span class="material-icons-outlined">send</span>
+      </button>
+            <!-- PC のみ表示：マイクボタン（CSS 初期状態は非表示） -->
+      <button id="mic-btn" class="pc-only" title="音声入力">
+        <span class="material-icons-outlined">mic</span>
+      </button>
+
+      <!-- 音声ファイル -->
+      <label class="file-label" title="音声ファイルを選択">
+        <span class="material-icons-outlined">attach_file</span>
+        <input id="audio-file" type="file" accept="audio/*" hidden>
+      </label>
+    </div>
+  </main>
+
+  <!-- メイン JS -->
+  <script src="/static/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+Flask==3.0.*
+gunicorn==22.*
+python-dotenv==1.*
+openai==1.*
+httpx==0.*
