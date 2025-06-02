@@ -11,3 +11,12 @@ log/
 *.bat
 --certfile
 Running
+
+# ===== local artifacts =====
+build/
+log/
+*.spec
+*.bat
+Running
+--certfile
+*.pem
