@@ -20,3 +20,12 @@ log/
 Running
 --certfile
 *.pem
+
+# ==== local artifacts ====
+build/
+log/
+*.spec
+*.bat
+Running
+--certfile
+*.pem
