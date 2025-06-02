@@ -3,3 +3,11 @@ cloudflared.exe
 *.exe
 venv/
 __pycache__/
+
+# build artifacts
+build/
+log/
+*.pem
+*.bat
+--certfile
+Running
